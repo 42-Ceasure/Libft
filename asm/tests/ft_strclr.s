@@ -1,27 +1,31 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    ft_islower.s                                       :+:      :+:    :+:    ;
+;    ft_strclr.s                                        :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/05/20 23:42:19 by cglavieu          #+#    #+#              ;
-;    Updated: 2015/05/21 00:39:25 by cglavieu         ###   ########.fr        ;
+;    Updated: 2015/05/21 00:38:13 by cglavieu         ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global _ft_islower
+global _ft_strclr
+
+extern _ft_strlen
 
 section .text
 
-_ft_islower:
-	mov rax, 1
-	cmp rdi, 'a'
-	jl fail
-	cmp rdi, 'z'
-	jg fail
-	ret
+_ft_strclr:
+	push rdi
+	cmp rdi, 0
+	je end
+	call _ft_strlen
+	mov rcx, rax
+	mov al, 0
+	cld
+	rep stosb
 
-fail:
-	mov rax, 0
+end:
+	pop rdi
 	ret

@@ -1,27 +1,26 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    ft_islower.s                                       :+:      :+:    :+:    ;
+;    ft_strnew.s                                        :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/05/20 23:42:19 by cglavieu          #+#    #+#              ;
-;    Updated: 2015/05/21 00:39:25 by cglavieu         ###   ########.fr        ;
+;    Updated: 2015/05/21 00:38:13 by cglavieu         ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global _ft_islower
+global	_ft_strnew
 
-section .text
+extern	_ft_memalloc
 
-_ft_islower:
-	mov rax, 1
-	cmp rdi, 'a'
-	jl fail
-	cmp rdi, 'z'
-	jg fail
-	ret
+section	.text
 
-fail:
-	mov rax, 0
+_ft_strnew:
+	enter	0, 0
+	push rdi
+	inc	rdi
+	call	_ft_memalloc
+	pop rdi
+	leave
 	ret

@@ -10,3 +10,18 @@
 ;                                                                              ;
 ; **************************************************************************** ;
 
+global _ft_isprint
+
+section .text
+
+_ft_isprint:
+	mov rax, 1
+	cmp rdi, 32
+	jl exit
+	cmp rdi, 126
+	jg exit
+	ret
+
+exit:
+	mov rax, 0
+	ret

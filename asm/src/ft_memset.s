@@ -10,3 +10,21 @@
 ;                                                                              ;
 ; **************************************************************************** ;
 
+global _ft_memset
+
+section .text
+
+_ft_memset:
+	push rdi
+	cmp rdx, 0
+	jle exit
+	cmp	rdi, 0
+	je exit
+	mov rax, rsi
+	mov rcx, rdx
+	rep stosb
+
+exit:
+	pop rdi
+	mov rax, rdi
+	ret

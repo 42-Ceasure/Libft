@@ -10,3 +10,22 @@
 ;                                                                              ;
 ; **************************************************************************** ;
 
+global _ft_memcpy
+
+section .text
+
+_ft_memcpy:
+	push rdi
+	cmp rdi, 0
+	je exit
+	cmp rsi, 0
+	je exit
+	cmp rdx, 0
+	jle exit
+	lea rax, [rsi]
+	mov rcx, rdx
+	rep movsb
+
+exit:
+	pop rax
+	ret
