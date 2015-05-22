@@ -6,21 +6,20 @@
 ;    By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/05/20 23:42:19 by cglavieu          #+#    #+#              ;
-;    Updated: 2015/05/21 00:38:13 by cglavieu         ###   ########.fr        ;
+;    Updated: 2015/05/22 05:19:10 by cglavieu         ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 global _ft_memalloc
 
-extern malloc
+extern _malloc
 extern _ft_bzero
 
 section	.text
 
 _ft_memalloc:
-	enter	0, 0
 	push	rdi
-	call	malloc
+	call	_malloc
 	cmp	rax, 0
 	je	exit
 	pop	rdi
@@ -33,5 +32,4 @@ _ft_memalloc:
 
 exit:
 	pop rdi
-	leave
 	ret

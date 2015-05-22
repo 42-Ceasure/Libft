@@ -6,13 +6,13 @@
 ;    By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/05/20 23:42:19 by cglavieu          #+#    #+#              ;
-;    Updated: 2015/05/21 00:38:10 by cglavieu         ###   ########.fr        ;
+;    Updated: 2015/05/22 05:18:55 by cglavieu         ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
 global _ft_strdup
 
-extern malloc
+extern _malloc
 extern _ft_strlen
 extern _ft_memcpy
 
@@ -27,7 +27,7 @@ _ft_strdup:
 	inc rax					; for '\0'
 	mov r12, rax			; save in r12 because r12 is a callee saved (r12-r15)
 	mov rdi, r12
-	call malloc
+	call _malloc
 	cmp rax, 0
 	je exit
 	mov rdi, rax 			; dst = malloc(s1)

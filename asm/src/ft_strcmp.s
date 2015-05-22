@@ -6,7 +6,7 @@
 ;    By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/05/20 23:42:19 by cglavieu          #+#    #+#              ;
-;    Updated: 2015/05/21 00:38:13 by cglavieu         ###   ########.fr        ;
+;    Updated: 2015/05/22 05:28:47 by cglavieu         ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
@@ -15,37 +15,22 @@ global _ft_strcmp
 section .text
 
 _ft_strcmp:
-	mov rax, 3
-	push rbp
-	mov rbp, rsp
-	cmp rdi, 0
-	je out
-	cmp rsi, 0
-	je out
-	push rdi
-	push rsi
+	jmp        .loop
 
-loop:
-	mov al, [rdi]
-	mov bl, [rsi]
-	cmp al, bl
-	jne diff
-	cmp al, 0
-	mov rax, 0
-	jz out
-	inc rdi
-	inc rsi
-	jmp loop
+.start:
+	cmp        al, 0 ; end of s1
+	je        .exit
+	inc        rdi
+	inc        rsi
 
-diff:
-	jg str2
-	mov rax, -1
-	jmp out
+.loop:
+	xor        rax, rax
+	xor        rcx, rcx
+	mov        al, [rdi] ; char
+	mov        cl, [rsi] ; char
+	cmp        al, cl
+	je        .start
 
-str2:
-	mov rax, 1
-
-out:
-	mov rsp, rbp
-	pop rbp
+.exit:
+	sub        rax, rcx
 	ret

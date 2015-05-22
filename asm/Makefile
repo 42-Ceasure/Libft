@@ -14,7 +14,7 @@
 
 CC =			nasm
 
-CFLAG =			-f macho64 --prefix _
+CFLAG =			-f macho64
 
 NAME =			libfts.a
 
