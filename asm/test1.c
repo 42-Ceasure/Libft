@@ -475,6 +475,30 @@ static void	test_strchr(void)
 	print_test_results(test, ctrl, 3, NULL);
 }
 
+static void	test_strclr(void)
+{
+	int		test[2], ctrl[2], i, n;
+	char	str1[]="\0abc", str2[]="\377abc\200\377";
+
+	print_test_name("strclr");
+#ifdef SEGFAULT_ME
+	ft_strclr(NULL);
+#endif
+	init(ctrl, 2, 0);
+	init(test, 2, 1);
+	ft_strclr(str1);
+	if (!(*str1) && str1[1] && str1[3] && !str1[4])
+		test[0] = 0;
+	i = 0;
+	n = strlen(str2) + 1;
+	ft_strclr(str2);
+	while (!str2[i] && i < n)
+		++i;
+	if (i == n)
+		test[1] = 0;
+	print_test_results(test, ctrl, 2, NULL);
+}
+
 static void	test_strcmp(void)
 {
 	int		test[9], ctrl[9];
@@ -528,11 +552,7 @@ static void	test_strcpy(void)
 		exit(EXIT_FAILURE);
 	}
 	test[0] = cmp(strcpy(dst1, src1), ft_strcpy(dst2, src1));
-	printf("\nvraie - %s\nmoi - %s\nsrc - %s\n", dst1, dst2, src1);
 	ft_strcpy(dst1, src2);
-	printf("\nmoi - %s\nsrc - %s\n\n", dst1, src2);
-	ft_strcpy(dst1, src2);
-	printf("\nmoi - %s\nsrc - %s\n\n", dst1, src2);
 	if (!dst1[strlen(src2)])
 		test[1] = 0;
 	free(dst1);
@@ -702,25 +722,33 @@ int			main(void)
 #else
 #endif
 
-	// test_bzero();
-	// test_isalnum();
-	// test_isalpha();
-	// test_isascii();
-	// test_isdigit();
-	// test_isprint();
-	// test_memalloc();
-	// test_memset();
-	// test_strcat();
-	// test_strchr();
-	// test_strcmp();
+	test_bzero();
+	test_isalnum();
+	test_isalpha();
+	test_isascii();
+	test_isdigit();
+
+	test_isprint();
+
+	test_memalloc();
+	test_memcpy();
+	test_memset();
+
+
+	test_strcat();
+	test_strchr();
+	test_strclr();
+	test_strcmp();
 	test_strcpy();
-	// test_strdup();
-	// test_strequ();
-	// test_strlen();
-	// test_strncpy();
-	// test_strnew();
-	// test_tolower();
-	// test_toupper();
+	test_strdup();
+	test_strequ();
+	test_strlen();
+	test_strncpy();
+	test_strnew();
+	test_tolower();
+	test_toupper();
+
+	printf("%llu", SIZE_MAX);
 
 	return (0);
 }

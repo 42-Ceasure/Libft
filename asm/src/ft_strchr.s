@@ -17,38 +17,21 @@ extern _ft_strlen
 section .text
 
 _ft_strchr:
-	push rbp
-	mov rbp, rsp
-	call _ft_strlen
-	cmp rsi, 0
-	je zerocase
-	mov rcx, rax
+	cmp rdi, 0
+	je _ret0
 	push rdi
-	inc rcx
-	push rcx
-	mov al, sil
-	cld
-	repne scasb
-	pop rax
+	call _ft_strlen
 	pop rdi
-	cmp rcx, 0
-	je notfound
+	mov rcx, rax
 	inc rcx
-	sub rax, rcx
-	add rdi, rax
+	mov rax, rsi
+	repne scasb
+	cmp rcx, 0
+	je _ret0
+	dec rdi
 	mov rax, rdi
-	jmp end
+	ret
 
-notfound:
+_ret0:
 	mov rax, 0
-	jmp end
-
-zerocase:
-	add rdi, rax
-	mov rax, rdi
-	jmp end
-
-end:
-	mov rsp, rbp
-	pop rbp
 	ret

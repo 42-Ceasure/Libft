@@ -17,9 +17,9 @@ section .text
 _ft_strcpy:
 	mov		r8, rdi
 .loop:
-	mov		r10, [rsi]
-	mov		[rdi], r10
-	cmp		r10, 0
+	mov		cl, [rsi]
+	mov		[rdi], cl
+	cmp		cl, 0
 	jz		.ret
 	inc		rdi
 	inc		rsi

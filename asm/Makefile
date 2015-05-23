@@ -30,7 +30,7 @@ SRCFIL =		ft_bzero.s	ft_isdigit.s	ft_isalpha.s	ft_isalnum.s\
 				ft_memset.s		ft_memcpy.s		ft_strdup.s		ft_strcat.s\
 				ft_cat.s 		ft_puts.s 		ft_memalloc.s 	ft_strchr.s\
 				ft_strclr.s 	ft_strcmp.s 	ft_strcpy.s 	ft_strequ.s\
-				ft_strncpy.s 	ft_strnew.s
+				ft_strncpy.s 	ft_strnew.s 	ft_memdel.s
 
 OBJFIL =		$(SRCFIL:.s=.o)
 

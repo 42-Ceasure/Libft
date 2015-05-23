@@ -39,7 +39,7 @@
 #include <ctype.h>
 #include <time.h>
 
-#include "../includes/libft.h"
+#include "../asm/lib/libftasm.h"
 
 #define D_ERROR	{ printf("Error Line %d, Funct %s ", __LINE__ - 1, __func__); return (0); }
 #define D_ADD_HCTEST(name)	uf_add_test(test, "\033[33m"#name"\033[0m", uf_test_##name);
@@ -140,42 +140,42 @@ int					main(int argc, const char **argv)
 	D_ADD_HCTEST(bzero);
 #define	D_MEMCPY
 	D_ADD_HCTEST(memcpy);
-#define	D_MEMCCPY
-	D_ADD_HCTEST(memccpy);
-#define	D_MEMMOVE
-	D_ADD_HCTEST(memmove);
-#define	D_MEMCHR
-	D_ADD_HCTEST(memchr);
-#define	D_MEMCMP
-	D_ADD_HCTEST(memcmp);
+// #define	D_MEMCCPY
+// 	D_ADD_HCTEST(memccpy);
+// #define	D_MEMMOVE
+	// D_ADD_HCTEST(memmove);
+// #define	D_MEMCHR
+	// D_ADD_HCTEST(memchr);
+// #define	D_MEMCMP
+	// D_ADD_HCTEST(memcmp);
 #define	D_STRLEN
 	D_ADD_TEST(strlen);
 #define	D_STRDUP
 	D_ADD_TEST(strdup);
 #define	D_STRCPY
 	D_ADD_HCTEST(strcpy);
-#define	D_STRNCPY
-	D_ADD_HCTEST(strncpy);
+// #define	D_STRNCPY
+	// D_ADD_HCTEST(strncpy);
 #define	D_STRCAT
 	D_ADD_TEST(strcat);
-#define	D_STRNCAT
-	D_ADD_TEST(strncat);
-#define	D_STRLCAT
-	D_ADD_TEST(strlcat);
+// #define	D_STRNCAT
+	// D_ADD_TEST(strncat);
+// #define	D_STRLCAT
+	// D_ADD_TEST(strlcat);
 #define	D_STRCHR
 	D_ADD_TEST(strchr);
-#define	D_STRRCHR
-	D_ADD_TEST(strrchr);
-#define	D_STRSTR
-	D_ADD_TEST(strstr);
-#define	D_STRNSTR
-	D_ADD_TEST(strnstr);
+// #define	D_STRRCHR
+// 	D_ADD_TEST(strrchr);
+// #define	D_STRSTR
+	// D_ADD_TEST(strstr);
+// #define	D_STRNSTR
+	// D_ADD_TEST(strnstr);
 #define	D_STRCMP
 	D_ADD_TEST(strcmp);
-#define	D_STRNCMP
-	D_ADD_TEST(strncmp);
-#define	D_ATOI
-	D_ADD_HCTEST(atoi);
+// #define	D_STRNCMP
+	// D_ADD_TEST(strncmp);
+// #define	D_ATOI
+	// D_ADD_HCTEST(atoi);
 #define	D_ISALPHA
 	D_ADD_HCTEST(isalpha);
 #define	D_ISDIGIT
@@ -194,44 +194,44 @@ int					main(int argc, const char **argv)
 	D_ADD_TEST(memalloc_and_del);
 #define	D_STRNEW
 	D_ADD_TEST(strnew);
-#define	D_STRDEL
-	D_ADD_TEST(strdel);
+// #define	D_STRDEL
+	// D_ADD_TEST(strdel);
 #define	D_STRCLR
 	D_ADD_TEST(strclr);
-#define	D_STRITER
-	D_ADD_TEST(striter);
-#define	D_STRITERI
-	D_ADD_TEST(striteri);
-#define	D_STRMAP
-	D_ADD_TEST(strmap);
-#define	D_STRMAPI
-	D_ADD_TEST(strmapi);
+// #define	D_STRITER
+	// D_ADD_TEST(striter);
+// #define	D_STRITERI
+	// D_ADD_TEST(striteri);
+// #define	D_STRMAP
+	// D_ADD_TEST(strmap);
+// #define	D_STRMAPI
+	// D_ADD_TEST(strmapi);
 #define	D_STREQU
 	D_ADD_TEST(strequ);
-#define	D_STRNEQU
-	D_ADD_TEST(strnequ);
-#define	D_STRSUB
-	D_ADD_TEST(strsub);
-#define	D_STRJOIN
-	D_ADD_TEST(strjoin);
-#define	D_STRSPLIT
-	D_ADD_TEST(strsplit);
-#define	D_ITOA
-	D_ADD_TEST(itoa);
-#define	D_STRTRIM
-	D_ADD_TEST(strtrim);
-#define	D_LSTNEW
-	D_ADD_TEST(lstnew);
-#define	D_LSTDELONE
-	D_ADD_TEST(lstdelone);
-#define	D_LSTDEL
-	D_ADD_TEST(lstdel);
-#define	D_LSTADD
-	D_ADD_TEST(lstadd);
-#define	D_LSTITER
-	D_ADD_TEST(lstiter);
-#define D_LSTMAP
-	D_ADD_TEST(lstmap);
+// #define	D_STRNEQU
+// 	D_ADD_TEST(strnequ);
+// #define	D_STRSUB
+	// D_ADD_TEST(strsub);
+// #define	D_STRJOIN
+	// D_ADD_TEST(strjoin);
+// #define	D_STRSPLIT
+	// D_ADD_TEST(strsplit);
+// #define	D_ITOA
+	// D_ADD_TEST(itoa);
+// #define	D_STRTRIM
+	// D_ADD_TEST(strtrim);
+// #define	D_LSTNEW
+	// D_ADD_TEST(lstnew);
+// #define	D_LSTDELONE
+	// D_ADD_TEST(lstdelone);
+// #define	D_LSTDEL
+	// D_ADD_TEST(lstdel);
+// #define	D_LSTADD
+	// D_ADD_TEST(lstadd);
+// #define	D_LSTITER
+	// D_ADD_TEST(lstiter);
+// #define D_LSTMAP
+	// D_ADD_TEST(lstmap);
 	while (test[i].set == true)
 	{
 		printf("Test [%s] : ", test[i].name);
