@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test_libft.c                                  :+:      :+:    :+:   */
+/*   main_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acivita <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 16:38:12 by acivita           #+#    #+#             */
-/*   Updated: 2014/11/14 11:42:20 by hnguyen          ###   ########.fr       */
+/*   Updated: 2015/05/26 02:44:02 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../asm/lib/libftasm.h"
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -75,31 +75,6 @@ int		test_isprint(void)
 	return (1);
 }
 
-int		test_strncmp(void)
-{
-	char str[4][8] = {"", " ", "Ah", "Coucou"};
-
-	int i=0;
-	int j;
-	int k;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-		k = 0;
-		while (k < 4)
-		{
-			if(ft_strncmp(str[i],str[j],k) != strncmp(str[i],str[j],k))
-				return (0);
-			k++;
-		}
-		j++;
-		}
-		i++;
-	}
-	return (1);
-}
 int		test_strcmp(void)
 {
 	char str[4][8] = {"", " ", "Ah", "Coucou"};
@@ -145,26 +120,6 @@ int		test_strcpy(void)
 		return (0);
 	return (1);
 }
-int		test_strstr(void)
-{
-	char *s1="Coucou";
-	char *s2="Cou";
-	if(strcmp(ft_strstr(s1,s2), strstr(s1,s2)) != 0)
-		return (0);
-	return (1);
-
-}
-
-int		test_strnstr(void)
-{
-	char *s1="Coucou";
-	char *s2="Cou";
-	int i=0;
-	while (i++ > 10)
-		if(strcmp(ft_strnstr(s1,s2,i), strnstr(s1,s2,i)) != 0)
-			return (0);
-return (1);
-}
 
 int		test_strncpy(void)
 {
@@ -206,92 +161,6 @@ int		test_strchr(void)
 		return (0);
 	return (1);
 }
-int		test_strrchr(void)
-{
-	char *s = "Mercure Venus Terre";
-	char c = ' ';
-	char z = 'z';
-	if (strcmp(ft_strrchr(s,c), strrchr(s,c)) != 0)
-		return (0);
-	if ((ft_strrchr(s,z) != NULL && strrchr(s,c) != NULL))
-		return (0);
-	return (1);
-}
-int		test_strncat(void)
-{
-	char *s = "c est ";
-	char *s1 = "moi";
-	int i = 0;
-	while (i < 15)
-	{
-	char *target = malloc(strlen(s) + strlen(s1) + 1);
-	strcpy(target, s);
-	if (strcmp(ft_strncat(target,s1,i), strncat(target,s1,i)) != 0)
-		return (0);
-	i++;
-	}
-	return (1);
-}
-int		test_strlcat(void)
-{
-	char *s = "c est ";
-	char *s1 = "moi";
-	char *s_ = "c est ";
-	char *s1_ = "moi";
-	int i = 0;
-	size_t k;
-	size_t j;
-	while (i < 15)
-	{
-	char *target = malloc(strlen(s) + strlen(s1) + 1);
-	char *target_ = malloc(strlen(s) + strlen(s1) + 1);
-	strcpy(target, s);
-	strcpy(target_, s_);
-	k = ft_strlcat(target,s1,i);
-	j = strlcat(target_,s1_,i);
-	if (k != j)
-		return (0);
-//	printf("%lu", k);
-//	printf("%lu", j);
-	i++;
-	}
-	return (1);
-}
-
-int		test_atoi(void)
-{
-	char str[15][15] =
-	{
-		{"000000110"},
-		{"-153"},
-		{"+132"},
-		{"++876"},
-		{"--132"},
-		{"dwbk "},
-		{"42jk "},
-		{" 21"},
-		{"      32 "},
-		{"\n		 42 32 "},
-		{"1-2"},
-		{"4+2 "},
-		{"	+442"},
-		{"  -4232 "},
-		{"4,5"},
-	};
-
-	int i=0;
-	while (i < 15)
-	{
-	//	printf("%s = ", str[i]);
-	//	printf("%d\n", atoi(str[i]));
-	//	printf("%s = ", str[i]);
-	//	printf("%d\n", ft_atoi(str[i]));
-		if(atoi(str[i]) != ft_atoi(str[i]))
-				return (0);
-		i++;
-	}
-	return (1);
-}
 
 int		test_memset(void)
 {
@@ -320,31 +189,7 @@ int		test_bzero(void)
 	}
 	return (1);
 }
-int		test_memcmp(void)
-{
-	char str[4][8] = {"", " ", "Ah", "Coucou"};
 
-	int i=0;
-	int j;
-	int k;
-	while (i < 4)
-	{
-		j = 0;
-		k = 0;
-		while (j < 4)
-		{
-			while (k < 8)
-			{
-				if(ft_memcmp(str[i],str[j],k) != memcmp(str[i],str[j],k))
-					return (0);
-				k++;
-			}
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
 int		test_memcpy(void)
 {
 	char	*src = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -358,57 +203,6 @@ int		test_memcpy(void)
 	ptr = (char *) memcpy(dest, src, 26);
 	ptr2 = (char *) ft_memcpy(dest2, src2, 26);
 	if (strcmp(ptr, ptr2) != 0)
-		return (0);
-	return (1);
-}
-int		test_memccpy(void)
-{
-	char *srce = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char dest[80];
-	char *ptr;
-	char *srce2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char dest2[80];
-	char *ptr2;
-
-	ptr = (char *) memccpy(dest, srce, 'I', strlen(srce));
-	ptr2 = (char *) ft_memccpy(dest2, srce2, 'I', strlen(srce2));
-	if (ptr && ptr2)
-	{
-		*ptr = '\0';
-		*ptr2 = '\0';
-	}
-	if (strcmp(dest,dest2) != 0)
-		return (0);
-	return (1);
-}
-
-int		test_memchr(void)
-{
-	char ch[30];
-	char *ptr;
-	char ch2[30];
-	char *ptr2;
-
-	strcpy(ch, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-	strcpy(ch2, "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-	ptr = (char *) memchr(ch, 'I', strlen(ch));
-	ptr2 = (char *) ft_memchr(ch2, 'I', strlen(ch2));
-	if (strcmp(ptr, ptr2) != 0)
-		return (0);
-	return 1;
-}
-
-int		test_memmove(void)
-{
-	char *dest = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	char *str;
-	char *str2;
-	char *srce = "--------------------------";
-	str = strdup(dest);
-	str2 = strdup(dest);
-	memmove(str, srce, 25);
-	ft_memmove(str2, srce, 25);
-	if (strcmp(str,str2) != 0)
 		return (0);
 	return (1);
 }
@@ -445,26 +239,15 @@ int main (void)
 	printf("test ft_memset\t= %d\n", test_memset());
 	printf("test ft_bzero\t= %d\n", test_bzero());
 	printf("test ft_memcpy\t= %d\n", test_memcpy());
-	printf("test ft_memccpy\t= %d\n", test_memccpy());
-	printf("test ft_memmove\t= %d\n", test_memmove());
-	printf("test ft_memchr\t= %d\n", test_memchr());
-	printf("test ft_memcmp\t= %d\n", test_memcmp());
 	printf("        ---\n");
 	printf("test ft_strlen\t= %d\n", test_strlen());
 	printf("test ft_strdup\t= %d\n", test_strdup());
 	printf("test ft_strcpy\t= %d\n", test_strcpy());
 	printf("test ft_strncpy\t= %d\n", test_strncpy());
 	printf("test ft_strcat\t= %d\n", test_strcat());
-	printf("test ft_strncat\t= %d\n", test_strncat());
-	printf("test ft_strlcat\t= %d\n", test_strlcat());
 	printf("test ft_strchr\t= %d\n", test_strchr());
-	printf("test ft_strrchr\t= %d\n", test_strrchr());
-	printf("test ft_strstr\t= %d\n", test_strstr());
-	printf("test ft_strnstr\t= %d\n", test_strnstr());
 	printf("test ft_strcmp\t= %d\n", test_strcmp());
-	printf("test ft_strncmp\t= %d\n", test_strncmp());
 	printf("        ---\n");
-	printf("test ft_atoi\t= %d\n", test_atoi());
 	printf("test ft_isalpha\t= %d\n", test_isalpha());
 	printf("test ft_isdigit\t= %d\n", test_isdigit());
 	printf("test ft_isalnum\t= %d\n", test_isalnum());
@@ -472,5 +255,18 @@ int main (void)
 	printf("test ft_isprint\t= %d\n", test_isprint());
 	printf("test ft_toupper\t= %d\n", test_toupper());
 	printf("test ft_tolower\t= %d\n", test_tolower());
+	if (ft_isupper(75) == 1)
+		ft_puts("isupper y ok");
+	if (ft_isupper(100) == 0)
+		ft_puts("isupper n ok");	
+	if (ft_islower(118) == 1)
+		ft_puts("islower y ok");
+	if (ft_islower(65) == 0)
+		ft_puts("islower n ok");	
+	ft_putchar('l');
+	ft_putchar('\n');
+	ft_putchar('p');
+	ft_putchar('\n');
+	ft_puts("loliloloulanoxification");
 	return (0);
 }

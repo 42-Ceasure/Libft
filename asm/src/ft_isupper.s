@@ -6,26 +6,22 @@
 ;    By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2015/05/20 23:42:19 by cglavieu          #+#    #+#              ;
-;    Updated: 2015/05/22 05:25:04 by cglavieu         ###   ########.fr        ;
+;    Updated: 2015/05/26 02:40:13 by cglavieu         ###   ########.fr        ;
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global _ft_memcpy
+global _ft_isupper
 
 section .text
 
-_ft_memcpy:
-	push rdi
-	cmp rdi, 0
-	je exit
-	cmp rsi, 0
-	je exit
-	cmp rdx, 0
-	jle exit
-	lea rax, [rsi]
-	mov rcx, rdx
-	rep movsb
+_ft_isupper:
+	mov rax, 1
+	cmp rdi, 'A'
+	jl fail
+	cmp rdi, 'Z'
+	jg fail
+	ret
 
-exit:
-	pop rax
+fail:
+	mov rax, 0
 	ret
