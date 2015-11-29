@@ -6,16 +6,20 @@
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 18:18:57 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/05/08 18:33:09 by cglavieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 18:17:44 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-# include <unistd.h>
+
+# define BUFF_SIZE 9000
 
 size_t	ft_strlen(char const *s);
 size_t	ft_strlcat(char *dst, char const *src, size_t size);
@@ -47,6 +51,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strequ(char const *s1, char const *s2);
 int		ft_strnequ(char const *s1, char const *s2, size_t n);
+int		get_next_line(int const fd, char **line);
 void	*ft_memalloc(size_t size);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -71,5 +76,7 @@ char	*ft_strtrim(char const *s);
 char	*ft_itoa(int n);
 char	*ft_strctrim(const char *s, char c);
 char	**ft_strsplit(const char *s, char c);
+char	*ft_epur_tabul(const char *src);
+char	*ft_epur_str(const char *src);
 
 #endif

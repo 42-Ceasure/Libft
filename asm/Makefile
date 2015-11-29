@@ -18,13 +18,7 @@ CFLAG =			-f macho64
 
 NAME =			libfts.a
 
-SRCDIR =		./src/
-
-OBJDIR =		./obj/
-
-LIBDIR =		./lib/
-
-SRCFIL =		ft_bzero.s	ft_isdigit.s	ft_isalpha.s	ft_isalnum.s\
+SRC =			ft_bzero.s	ft_isdigit.s	ft_isalpha.s	ft_isalnum.s\
 				ft_isascii.s	ft_isprint.s	ft_toupper.s	ft_tolower.s\
 				ft_isupper.s	ft_islower.s	ft_putchar.s	ft_strlen.s\
 				ft_memset.s		ft_memcpy.s		ft_strdup.s		ft_strcat.s\
@@ -32,32 +26,28 @@ SRCFIL =		ft_bzero.s	ft_isdigit.s	ft_isalpha.s	ft_isalnum.s\
 				ft_strclr.s 	ft_strcmp.s 	ft_strcpy.s 	ft_strequ.s\
 				ft_strncpy.s 	ft_strnew.s
 
-OBJFIL =		$(SRCFIL:.s=.o)
+SRCDIR = ./src/
+SRCFILL = $(addprefix $(SRCDIR),$(SRC))
 
-LIBFIL =		libftasm.h
+OBJ = $(SRC:.s=.o)
+OBJDIR = ./obj/
+OBJFILL = $(addprefix $(OBJDIR),$(OBJ))
 
-SRC =			$(addprefix $(SRCDIR),$(SRCFIL))
-
-OBJ =			$(addprefix $(OBJDIR),$(OBJFIL))
-
-LIB =			$(addprefix $(LIBDIR),$(LIBFIL))
+INC = ./inc/
 
 all:			$(NAME)
 
-$(NAME):		$(OBJ)
+$(NAME):		$(OBJFILL)
 				@ar rcs $@ $^
-				@echo "libfts.a created"
 
 $(OBJDIR)%.o:	$(SRCDIR)%.s
 				@mkdir -p $(OBJDIR)
-				@$(CC) $(CFLAG) -I$(LIBDIR)  $< -o $@
+				@$(CC) $(CFLAG) -I $(INC) $< -o $@
 
 clean:
-				@rm -rf $(OBJ)
-				@echo "clean done"
-fclean:			
+				@rm -rf $(OBJDIR)
+
+fclean:			clean
 				@rm -f $(NAME)
-				@rm -rf $(OBJ)
-				@echo "fclean done"
 
 re: 			fclean all
