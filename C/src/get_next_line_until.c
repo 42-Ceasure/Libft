@@ -44,15 +44,15 @@ static char			*ft_stock(char *s)
 	return (str);
 }
 
-static void				ft_norme(char **buff, char **line, char **save, int ret)
-{
-	ft_strdel(buff);
-	*line = ft_line(*save);
-	if (ret == 0)
-		ft_strdel(save);
-}
+// static void				ft_norme(char **buff, char **line, char **save, int ret)
+// {
+// 	ft_strdel(buff);
+// 	*line = ft_line(*save);
+// 	if (ret == 0)
+// 		ft_strdel(save);
+// }
 
-int					get_next_line(int const fd, char **line)
+int					get_next_line_until(int const fd, char **line, int stop)
 {
 	int				ret;
 	char			*temp;
@@ -73,7 +73,10 @@ int					get_next_line(int const fd, char **line)
 		save = ft_strjoin(save, buff);
 		ft_strdel(&temp);
 	}
-	ft_norme(&buff, line, &save, ret);
+	ft_strdel(&buff);
+	*line = ft_line(save);
+	if (ret == 0 || stop == 1)
+		ft_strdel(&save);
 	if (ret == 0 && *line[0] == '\0')
 		return (0);
 	save = ft_stock(save);

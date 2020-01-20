@@ -1,31 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_memreg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/16 18:39:13 by cglavieu          #+#    #+#             */
-/*   Updated: 2015/01/17 16:59:47 by cglavieu         ###   ########.fr       */
+/*   Created: 2015/11/30 02:45:28 by cglavieu          #+#    #+#             */
+/*   Updated: 2015/12/19 16:27:42 by cglavieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_memreg3(char ***s)
 {
-	unsigned int		i;
-	const unsigned char *str;
+	int i;
+	int j;
 
 	i = 0;
-	str = NULL;
-	if (s)
-		str = (unsigned char *)s;
-	while (i < n)
+	if (s != NULL)
 	{
-		if (str[i] == (unsigned char)c)
-			return ((unsigned char *)str + i);
-		i++;
+		while (s[i])
+		{
+			j = 0;
+			while (s[i][j])
+			{
+				free(s[i][j]);
+				s[i][j] = NULL;
+				j++;
+			}
+			free(s[i]);
+			s[i] = NULL;
+			i++;
+		}
+		free(s);
 	}
-	return (NULL);
+	s = NULL;
+}
+
+void	ft_memreg(char **s)
+{
+	int i;
+
+	i = 0;
+	if (s != NULL)
+	{
+		while (s[i])
+		{
+			free(s[i]);
+			s[i] = NULL;
+			i++;
+		}
+		free(s);
+		s = NULL;
+	}
 }

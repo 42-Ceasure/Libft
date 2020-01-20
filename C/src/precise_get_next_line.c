@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   precise_get_next_line.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -52,21 +52,21 @@ static void				ft_norme(char **buff, char **line, char **save, int ret)
 		ft_strdel(save);
 }
 
-int					get_next_line(int const fd, char **line)
+int					precise_get_next_line(int const fd, char **line, int size)
 {
 	int				ret;
 	char			*temp;
 	static char		*save;
 	char			*buff;
 
-	buff = ft_strnew(BUFF_SIZE + 1);
+	buff = ft_strnew(size + 1);
 	save = (save == NULL) ? ft_strnew(1) : save;
-	if (buff == NULL || BUFF_SIZE <= 0 || line == NULL)
+	if (buff == NULL || size <= 0 || line == NULL)
 		return (-1);
 	ret = 42;
 	while ((ft_strchr(save, '\n') == NULL) && ret > 0)
 	{
-		if ((ret = read(fd, buff, BUFF_SIZE)) == -1)
+		if ((ret = read(fd, buff, size)) == -1)
 			return (-1);
 		buff[ret] = '\0';
 		temp = save;
