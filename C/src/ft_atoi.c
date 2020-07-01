@@ -27,27 +27,6 @@ static int			ft_caract(const char *str)
 	return (i);
 }
 
-unsigned int		ft_atou(const char *str)
-{
-	int 			i;
-	unsigned int	res;
-
-	i = ft_caract(str);
-	res = 0;
-	if (ft_strcmp(str, "4294967295") == 0)
-		res = 4294967295;
-	else
-	{
-		while (ft_isdigit(str[i]) != 0)
-		{
-			res = res * 10;
-			res = res + (str[i] - 48);
-			i++;
-		}
-	}
-	return (res);
-}
-
 int					ft_atoi(const char *str)
 {
 	int				i;
