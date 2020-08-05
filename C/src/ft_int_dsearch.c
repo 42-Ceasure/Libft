@@ -2,23 +2,18 @@
 
 #include "libft.h"
 
-int		ft_int_dsearch(int *tab, size_t size, int val)
+int		ft_int_dsearch(int *tab, int min, int max, int val)
 {
-	int min;
-	int max;
 	int mid;
 
-	min = 0;
-	max = size - 1;
-	while (min <= max)
+	if (max > 0)
 	{
-		mid = min + (max - min) / 2;
+		mid = min + (max - 1) / 2;
 		if (tab[mid] == val)
-			return (val);
-		if (tab[mid] < val)
-			min = mid + 1;
-		else
-			max = mid - 1;
+			return (mid);
+		if (tab[mid] > val)
+			return (ft_int_dsearch(tab, min, mid - 1, val));
+		return (ft_int_dsearch(tab, mid + 1, max, val));
 	}
 	return (-1);
 }
