@@ -6,9 +6,9 @@ int		ft_int_dsearch(int *tab, int min, int max, int val)
 {
 	int mid;
 
-	if (max > 0)
+	if (max >= min)
 	{
-		mid = min + (max - 1) / 2;
+		mid = min + (max - min) / 2;
 		if (tab[mid] == val)
 			return (mid);
 		if (tab[mid] > val)
